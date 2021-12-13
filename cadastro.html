@@ -35,9 +35,10 @@
                         <span class="alerta-erro" id="erro-email-invalido">O e-mail inserido deve conter um "@".</span>
                     </div>
                     <div class="input-container">
-                        <input name="senha" id="senha" class="input" type="password" placeholder="Senha" required pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,12}$" title="A senha deve entre 6 e 12 caraceteres e conter pelo menos uma letra minúscula, uma maiúscula, um número.">
+                        <input name="senha" id="senha" class="input" type="password" placeholder="Senha">
                         <label class="input-label" for="senha">Senha</label>
-                        <span class="input-mensagem-erro">Este campo não está válido</span>
+                        <span class="alerta-erro" id="erro-senha-vazia">Este campo não pode estar vazio.</span>
+                        <span class="alerta-erro" id="erro-senha-invalida">A senha deve entre 6 e 12 caraceteres e conter pelo menos uma letra minúscula, uma maiúscula, um número.</span>
                     </div>
                 </fieldset>
                 <fieldset>
