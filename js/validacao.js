@@ -1,46 +1,41 @@
-function valida(input) {
-    const tipoDeInput = input.dataset.tipo;
+let inputNome = document.getElementById("nome");
+let spanErroNome = document.getElementById("erro-nome");
+let inputEmail = document.getElementById("email");
+let spanErroEmailVazio = document.getElementById("erro-email-vazio");
+let spanErroEmailInvalido = document.getElementById("erro-email-invalido");
+let botao = document.getElementById("botao");
 
-    if (validadores[tipoDeInput]) {
-        validadores[tipoDeInput](input);
-    }
+botao.onclick = cliqueBotao;
+
+function cliqueBotao(event) {
+    validaInputNome();
+    validaInputEmailVazio();
+    validaInputEmailInvalido();
 }
 
-const validadores = {
-    dataNascimento:input => validaNascimento(input)
+function validaInputNome() {
+    let valorInputNome = inputNome.value;
+    if(valorInputNome.length <= 0) {
+        spanErroNome.style.display = "block";
+    } else {
+        spanErroNome.style.display = "none";
+    }  
 }
 
-const dataNascimento = document.querySelector("#nascimento");
-
-dataNascimento.addEventListener("blur", (evento) => {
-    validaNascimento(evento.target);
-})
-
-function validaNascimento(input) {
-    const dataRecebida = new Date(input.value);
-    let mensagem = "";
-
-    if (!maiorQue18(dataRecebida)) {
-        mensagem = "Você deve ter mais de 18 anos para se cadastrar.";
-    }
-
-    input.setCustomValidity(mensagem);
+function validaInputEmailVazio() {
+    let valorInputEmail = inputEmail.value;
+    if(valorInputEmail.length <= 0) {
+        spanErroEmailVazio.style.display = "block";
+    } else {
+        spanErroEmailVazio.style.display = "none";
+    }  
 }
 
-function maiorQue18(data) {
-    const dataAtual = new Date();
-    const dataMais18 = new Date(data.getUTCFullYear() + 18, data.getUTCMonth(), data.getUTCDate());
-
-    return dataMais18 <= dataAtual;
+function validaInputEmailInvalido() {
+    let valorInputEmail = inputEmail.value;
+    if(!valorInputEmail.includes("@")) {
+        spanErroEmailInvalido.style.display = "block";
+    } else {
+        spanErroEmailInvalido.style.display = "none";
+    }  
 }
-
-const inputs = document.querySelectorAll("input");
-
-inputs.forEach(input => {
-    input.addEventListener("blur", (evento) => {
-        valida(evento.target);    
-    });
-});
-
-
-
