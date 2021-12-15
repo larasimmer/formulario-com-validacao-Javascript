@@ -6,56 +6,73 @@ let spanErroEmailInvalido = document.getElementById("erro-email-invalido");
 let inputSenha = document.getElementById("senha");
 let spanErroSenhaVazia = document.getElementById("erro-senha-vazia");
 let spanErroSenhaInvalida = document.getElementById("erro-senha-invalida");
-let botao = document.getElementById("botao");
+let inputNascimento = document.getElementById("nascimento");
+let spanErroNascimentoVazio = document.getElementById("erro-nascimento-vazio");
+let spanErroNascimentoInvalido = document.getElementById("erro-nascimento-invalido");
 
-botao.onclick = cliqueBotao;
+let formularioCadastro = document.getElementById("registration-form");
+
+formularioCadastro.onsubmit = cliqueBotao;
 
 function cliqueBotao(event) {
+    event.preventDefault();
     validaInputNome();
     validaInputEmailVazio();
     validaInputEmailInvalido();
     validaInputSenhaVazio();
     validaInputSenhaInvalido();
+    validaInputNascimentoVazio();
 }
 
 function validaInputNome() {
+    var nomeValidado = false;
     let valorInputNome = inputNome.value;
     if (valorInputNome.length <= 0) {
         spanErroNome.style.display = "block";
     } else {
         spanErroNome.style.display = "none";
+        nomeValidado = true;
     }  
+
+    return nomeValidado;
 }
 
 function validaInputEmailVazio() {
+    var emailPreenchido = false;
     let valorInputEmail = inputEmail.value;
     if (valorInputEmail.length <= 0) {
         spanErroEmailVazio.style.display = "block";
     } else {
         spanErroEmailVazio.style.display = "none";
+        return emailPreenchido = true;
     }  
 }
 
 function validaInputEmailInvalido() {
+    var emailValidado = false;
     let valorInputEmail = inputEmail.value;
     if (!valorInputEmail.includes("@") && valorInputEmail.length > 0) {
         spanErroEmailInvalido.style.display = "block";
     } else {
         spanErroEmailInvalido.style.display = "none";
+        return emailValidado = true;
     }  
 }
 
 function validaInputSenhaVazio() {
+    var senhaPreenchida = false;
     let valorInputSenha = inputSenha.value;
     if (valorInputSenha.length <= 0) {
         spanErroSenhaVazia.style.display = "block";
     } else {
         spanErroSenhaVazia.style.display = "none";
+        return senhaPreenchida = true;
     }  
 }
 
 function validaInputSenhaInvalido() {
     let valorInputSenha = inputSenha.value;
+    var senhaValidada = false;
     var validacaoTamanhoSenha = validaTamanhoSenha(valorInputSenha);
     var validacaoSenhaTemNumero = validaNumeroSenha(valorInputSenha);
     var validacaoSenhaTemLetraMaiuscula = validaLetrasMaiusculasSenha(valorInputSenha);
@@ -65,6 +82,7 @@ function validaInputSenhaInvalido() {
         spanErroSenhaInvalida.style.display = "block";
     } else {
         spanErroSenhaInvalida.style.display = "none";
+        return senhaValidada = true;
     }
 }
 
@@ -112,4 +130,13 @@ function validaLetrasMinusculasSenha(valorInputSenha) {
     });
 
     return temLetraMinuscula;
+}
+
+function validaInputNascimento() {
+    let valorInputNascimento = inputNascimento.value;
+    if (valorInputNascimento.length <= 0) {
+        spanErroNascimentoVazio.style.display = "block";
+    } else {
+        spanErroNome.style.display = "none";
+    }  
 }
