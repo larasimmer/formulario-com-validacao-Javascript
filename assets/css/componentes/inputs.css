@@ -68,10 +68,6 @@
     color: var(--cor-aviso);
 }
 
-.input-mensagem-erro {
-    display: none;
-}
-
 .input-container--invalido .input-mensagem-erro {
     color: var(--cor-aviso);
     display: block;

@@ -29,25 +29,26 @@
     <main class="container flex flex--centro flex--coluna">
         <section class="cartao cadastro">
             <h1 class="cartao__titulo">Cadastrar um produto</h1>
-            <form action="./cadastro_produto_concluido.html" class="flex flex--coluna">
+            <form action="./cadastro_produto_concluido.html" class="flex flex--coluna" id="cadastro-produto">
                 <div class="input-container">
                     <input name="nome" id="nome" class="input" type="text" placeholder="Nome">
                     <label class="input-label" for="nome">Nome</label>
-                    <span class="input-mensagem-erro">Este campo não está válido</span>
+                    <span class="alerta-erro erro-nome-vazio">Este campo não pode estar vazio.</span>
                 </div>
                 <div class="input-container cadastro__preco-container">
                     <input name="preco" id="preco" class="input" type="text" placeholder="Preço">
                     <label class="input-label" for="preco">Preço</label>
-                    <span class="input-mensagem-erro">Este campo não está válido</span>
+                    <span class="alerta-erro erro-preco-vazio">Este campo não pode estar vazio.</span>
                 </div>
                 <div class="input-container cadastro__descricao-container">
                     <input class="input" name="descricao" id="descricao" placeholder="Descrição">
                     <label class="input-label" for="descricao">Descrição</label>
-                    <span class="input-mensagem-erro">Este campo não está válido</span>
+                    <span class="alerta-erro erro-descricao-vazia">Este campo não pode estar vazio.</span>
                 </div>
                 <button class="botao">Cadastrar produto</button>
             </form>
         </section>
     </main>
+    <script src="./js/validacaoCadastroProduto.js"></script>
 </body>
 </html>
