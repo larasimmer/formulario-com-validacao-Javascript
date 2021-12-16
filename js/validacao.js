@@ -9,19 +9,43 @@ let spanErroSenhaInvalida = document.getElementById("erro-senha-invalida");
 let inputNascimento = document.getElementById("nascimento");
 let spanErroNascimentoVazio = document.getElementById("erro-nascimento-vazio");
 let spanErroNascimentoInvalido = document.getElementById("erro-nascimento-invalido");
+let inputCpf = document.getElementById("cpf");
+let spanErroCpfVazio = document.getElementById("erro-cpf-vazio");
+let spanErroCpfInvalido = document.getElementById("erro-cpf-invalido");
+let inputCep = document.getElementById("cep");
+let spanErroCepVazio = document.getElementById("erro-cep-vazio");
+let inputLogradouro = document.getElementById("logradouro");
+let spanErroLogradouroVazio = document.getElementById("erro-logradouro-vazio");
+let inputCidade = document.getElementById("cidade");
+let spanErroCidadeVazia = document.getElementById("erro-cidade-vazia");
+let inputEstado = document.getElementById("estado");
+let spanErroEstadoVazio = document.getElementById("erro-estado-vazio");
 
 let formularioCadastro = document.getElementById("registration-form");
 
-formularioCadastro.onsubmit = cliqueBotao;
+formularioCadastro.onsubmit = realizaValidacoes;
 
-function cliqueBotao(event) {
+function realizaValidacoes(event) {
     event.preventDefault();
-    validaInputNome();
-    validaInputEmailVazio();
-    validaInputEmailInvalido();
-    validaInputSenhaVazio();
-    validaInputSenhaInvalido();
-    validaInputNascimentoVazio();
+    var nomeValidado = validaInputNome();
+    var emailPreenchido = validaInputEmailVazio();
+    var emailValidado = validaInputEmailInvalido();
+    var senhaPreenchida = validaInputSenhaVazio();
+    var senhaValidada = validaInputSenhaInvalido();
+    var nascimentoPreenchido = validaInputNascimentoVazio();
+    var cpfPreenchido = validaInputCpfVazio();
+    var cepPreenchido = validaInputCepVazio();
+    var logradouroPreenchido = validaInputLogradouroVazio();
+    var cidadePreenchida = validaInputCidadeVazio();
+    var estadoPreenchido = validaInputEstadoVazio();
+
+    if (nomeValidado == false || emailPreenchido == false || emailValidado == false || senhaPreenchida == false || 
+        senhaValidada == false || nascimentoPreenchido == false || cpfPreenchido == false || cepPreenchido == false ||
+        logradouroPreenchido == false || cidadePreenchida == false || estadoPreenchido == false) {
+            return false;
+        } else {
+            formularioCadastro.submit();
+        }
 }
 
 function validaInputNome() {
@@ -44,8 +68,10 @@ function validaInputEmailVazio() {
         spanErroEmailVazio.style.display = "block";
     } else {
         spanErroEmailVazio.style.display = "none";
-        return emailPreenchido = true;
+        emailPreenchido = true;
     }  
+
+    return emailPreenchido;
 }
 
 function validaInputEmailInvalido() {
@@ -55,8 +81,10 @@ function validaInputEmailInvalido() {
         spanErroEmailInvalido.style.display = "block";
     } else {
         spanErroEmailInvalido.style.display = "none";
-        return emailValidado = true;
+        emailValidado = true;
     }  
+
+    return emailValidado;
 }
 
 function validaInputSenhaVazio() {
@@ -66,8 +94,10 @@ function validaInputSenhaVazio() {
         spanErroSenhaVazia.style.display = "block";
     } else {
         spanErroSenhaVazia.style.display = "none";
-        return senhaPreenchida = true;
+        senhaPreenchida = true;
     }  
+
+    return senhaPreenchida;
 }
 
 function validaInputSenhaInvalido() {
@@ -82,8 +112,10 @@ function validaInputSenhaInvalido() {
         spanErroSenhaInvalida.style.display = "block";
     } else {
         spanErroSenhaInvalida.style.display = "none";
-        return senhaValidada = true;
+        senhaValidada = true;
     }
+
+    return senhaValidada;
 }
 
 function validaTamanhoSenha(valorInputSenha) {
@@ -132,11 +164,80 @@ function validaLetrasMinusculasSenha(valorInputSenha) {
     return temLetraMinuscula;
 }
 
-function validaInputNascimento() {
+function validaInputNascimentoVazio() {
+    var nascimentoPreenchido = false;
     let valorInputNascimento = inputNascimento.value;
     if (valorInputNascimento.length <= 0) {
         spanErroNascimentoVazio.style.display = "block";
     } else {
-        spanErroNome.style.display = "none";
-    }  
+        spanErroNascimentoVazio.style.display = "none";
+        nascimentoPreenchido = true;
+    }
+    
+    return nascimentoPreenchido;
+}
+
+function validaInputCpfVazio() {
+    var cpfPreenchido = false;
+    let valorInputCpf = inputCpf.value;
+    if (valorInputCpf.length <= 0) {
+        spanErroCpfVazio.style.display = "block";
+    } else {
+        spanErroCpfVazio.style.display = "none";
+        cpfPreenchido = true;
+    }
+    
+    return cpfPreenchido;
+}
+
+function validaInputCepVazio() {
+    var cepPreenchido = false;
+    let valorInputCep = inputCep.value;
+    if (valorInputCep.length <= 0) {
+        spanErroCepVazio.style.display = "block";
+    } else {
+        spanErroCepVazio.style.display = "none";
+        cepPreenchido = true;
+    }
+    
+    return cepPreenchido;
+}
+
+function validaInputLogradouroVazio() {
+    var logradouroPreenchido = false;
+    let valorInputLogradouro = inputLogradouro.value;
+    if (valorInputLogradouro.length <= 0) {
+        spanErroLogradouroVazio.style.display = "block";
+    } else {
+        spanErroLogradouroVazio.style.display = "none";
+        logradouroPreenchido = true;
+    }
+    
+    return logradouroPreenchido;
+}
+
+function validaInputCidadeVazio() {
+    var cidadePreenchida = false;
+    let valorInputCidade = inputCidade.value;
+    if (valorInputCidade.length <= 0) {
+        spanErroCidadeVazia.style.display = "block";
+    } else {
+        spanErroCidadeVazia.style.display = "none";
+        cidadePreenchida = true;
+    }
+    
+    return cidadePreenchida;
+}
+
+function validaInputEstadoVazio() {
+    var estadoPreenchido = false;
+    let valorInputEstado = inputEstado.value;
+    if (valorInputEstado.length <= 0) {
+        spanErroEstadoVazio.style.display = "block";
+    } else {
+        spanErroEstadoVazio.style.display = "none";
+        estadoPreenchido = true;
+    }
+    
+    return estadoPreenchido;
 }

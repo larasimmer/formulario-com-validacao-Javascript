@@ -50,32 +50,33 @@
                         <span class="alerta-erro" id="erro-nascimento-invalido">Você deve ter mais de 18 anos para se cadastrar.</span>
                     </div>
                     <div class="input-container">
-                        <input name="cpf" id="cpf" class="input" type="text" placeholder="CPF">
+                        <input name="cpf" id="cpf" class="input" placeholder="CPF" type="number">
                         <label class="input-label" for="cpf">CPF</label>
-                        <span class="input-mensagem-erro">Este campo não está válido</span>
+                        <span class="alerta-erro" id="erro-cpf-vazio">Este campo não pode estar vazio.</span>
+                        <span class= "alerta-erro erro-cpf-inválido">Este campo não está válido</span>
                     </div>
                 </fieldset>
                 <fieldset>
                     <legend class="formulario__legenda">Endereço</legend>
                     <div class="input-container">
-                        <input name="cep" id="cep" class="input" type="text" placeholder="CEP">
+                        <input name="cep" id="cep" class="input" type="number" placeholder="CEP">
                         <label class="input-label" for="cep">CEP</label>
-                        <span class="input-mensagem-erro">Este campo não está válido</span>
+                        <span class="alerta-erro" id="erro-cep-vazio">Este campo não pode estar vazio.</span>
                     </div>
                     <div class="input-container">
                         <input name="logradouro" id="logradouro" class="input" type="text" placeholder="Logradouro">
                         <label class="input-label" for="logradouro">Logradouro</label>
-                        <span class="input-mensagem-erro">Este campo não está válido</span>
+                        <span class="alerta-erro" id="erro-logradouro-vazio">Este campo não pode estar vazio.</span>
                     </div>
                     <div class="input-container">
                         <input name="cidade" id="cidade" class="input" type="text" placeholder="Cidade">
                         <label class="input-label" for="cidade">Cidade</label>
-                        <span class="input-mensagem-erro">Este campo não está válido</span>
+                        <span class="alerta-erro" id="erro-cidade-vazia">Este campo não pode estar vazio.</span>
                     </div>
                     <div class="input-container">
                         <input name="estado" id="estado" class="input" type="text" placeholder="Estado">
                         <label class="input-label" for="estado">Estado</label>
-                        <span class="input-mensagem-erro">Este campo não está válido</span>
+                        <span class="alerta-erro" id="erro-estado-vazio">Este campo não pode estar vazio.</span>
                     </div>
                 </fieldset>
                 <button class="botao" id="botao">Cadastrar</a>
