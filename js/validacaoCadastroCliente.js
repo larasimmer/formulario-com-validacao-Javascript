@@ -33,6 +33,7 @@ function realizaValidacoes(event) {
     var senhaPreenchida = validaInputSenhaVazio();
     var senhaValidada = validaInputSenhaInvalido();
     var nascimentoPreenchido = validaInputNascimentoVazio();
+    var nascimentoValidado = validaInputNascimentoInvalido();
     var cpfPreenchido = validaInputCpfVazio();
     var cepPreenchido = validaInputCepVazio();
     var logradouroPreenchido = validaInputLogradouroVazio();
@@ -40,7 +41,7 @@ function realizaValidacoes(event) {
     var estadoPreenchido = validaInputEstadoVazio();
 
     if (nomeValidado == false || emailPreenchido == false || emailValidado == false || senhaPreenchida == false || 
-        senhaValidada == false || nascimentoPreenchido == false || cpfPreenchido == false || cepPreenchido == false ||
+        senhaValidada == false || nascimentoPreenchido == false || nascimentoValidado == false || cpfPreenchido == false || cepPreenchido == false ||
         logradouroPreenchido == false || cidadePreenchida == false || estadoPreenchido == false) {
             return false;
         } else {
@@ -175,6 +176,34 @@ function validaInputNascimentoVazio() {
     }
     
     return nascimentoPreenchido;
+}
+
+function validaInputNascimentoInvalido() {
+    var nascimentoValidado = false;
+    let valorInputNascimento = new Date(inputNascimento.value);
+
+    if (calculaNascimentoMais18(valorInputNascimento) == false) {
+        spanErroNascimentoInvalido.style.display = "block";
+    } else {
+        spanErroNascimentoInvalido.style.display = "none";
+        nascimentoValidado = true;
+    }
+
+    return nascimentoValidado;
+}
+
+function calculaNascimentoMais18(data) {
+    var maiorDeIdade = false;
+    let dataAtual = new Date();
+    let dataMais18Anos = new Date(data.getUTCFullYear() + 18, data.getUTCMonth(), data.getUTCDate());
+
+    if (dataMais18Anos > dataAtual) {
+        maiorDeIdade = false;
+    } else {
+        maiorDeIdade = true;
+    }
+
+    return maiorDeIdade;
 }
 
 function validaInputCpfVazio() {
