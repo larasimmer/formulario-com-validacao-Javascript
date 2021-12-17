@@ -36,13 +36,14 @@ function realizaValidacoes(event) {
     var nascimentoPreenchido = validaInputNascimentoVazio();
     var nascimentoValidado = validaInputNascimentoInvalido();
     var cpfPreenchido = validaInputCpfVazio();
+    var cpfContemNumerosIguais = validaCpfNumerosIguais();
     var cepPreenchido = validaInputCepVazio();
     var logradouroPreenchido = validaInputLogradouroVazio();
     var cidadePreenchida = validaInputCidadeVazio();
     var estadoPreenchido = validaInputEstadoVazio();
 
     if (nomeValidado == false || emailPreenchido == false || emailValidado == false || senhaPreenchida == false || 
-        senhaValidada == false || nascimentoPreenchido == false || nascimentoValidado == false || cpfPreenchido == false || cepPreenchido == false ||
+        senhaValidada == false || nascimentoPreenchido == false || nascimentoValidado == false || cpfPreenchido == false || cpfContemNumerosIguais == true || cepPreenchido == false ||
         logradouroPreenchido == false || cidadePreenchida == false || estadoPreenchido == false) {
             return false;
         } else {
@@ -228,6 +229,24 @@ function validaInputCpfVazio() {
     }
     
     return cpfPreenchido;
+}
+
+function validaCpfNumerosIguais() {
+    let valorInputCpf = inputCpf.value;
+
+    let numerosRepetidos = ["00000000000", "11111111111", "22222222222", "33333333333", "44444444444", 
+    "55555555555", "66666666666", "77777777777", "88888888888", "99999999999"];
+    var cpfContemNumerosIguais = false;
+
+    numerosRepetidos.forEach(function(numeroRepetido,index) {
+        
+        if (valorInputCpf == numeroRepetido) {
+            
+            cpfContemNumerosIguais = true;
+        }
+    });
+        
+        return cpfContemNumerosIguais;
 }
 
 function validaInputCepVazio() {
