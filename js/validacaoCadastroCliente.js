@@ -1,4 +1,5 @@
 let inputNome = document.getElementById("nome");
+let divInput = document.querySelector(".input-container");
 let spanErroNome = document.getElementById("erro-nome");
 let inputEmail = document.getElementById("email");
 let spanErroEmailVazio = document.getElementById("erro-email-vazio");
@@ -54,8 +55,10 @@ function validaInputNome() {
     let valorInputNome = inputNome.value;
     if (valorInputNome.length <= 0) {
         spanErroNome.style.display = "block";
+        inputNome.parentElement.classList.add("input-container--invalido");
     } else {
         spanErroNome.style.display = "none";
+        inputNome.parentElement.classList.remove("input-container--invalido");
         nomeValidado = true;
     }  
 
@@ -67,8 +70,10 @@ function validaInputEmailVazio() {
     let valorInputEmail = inputEmail.value;
     if (valorInputEmail.length <= 0) {
         spanErroEmailVazio.style.display = "block";
+        inputEmail.parentElement.classList.add("input-container--invalido");
     } else {
         spanErroEmailVazio.style.display = "none";
+        inputEmail.parentElement.classList.remove("input-container--invalido");
         emailPreenchido = true;
     }  
 
@@ -93,8 +98,10 @@ function validaInputSenhaVazio() {
     let valorInputSenha = inputSenha.value;
     if (valorInputSenha.length <= 0) {
         spanErroSenhaVazia.style.display = "block";
+        inputSenha.parentElement.classList.add("input-container--invalido");
     } else {
         spanErroSenhaVazia.style.display = "none";
+        inputSenha.parentElement.classList.remove("input-container--invalido");
         senhaPreenchida = true;
     }  
 
@@ -170,8 +177,10 @@ function validaInputNascimentoVazio() {
     let valorInputNascimento = inputNascimento.value;
     if (valorInputNascimento.length <= 0) {
         spanErroNascimentoVazio.style.display = "block";
+        inputNascimento.parentElement.classList.add("input-container--invalido");
     } else {
         spanErroNascimentoVazio.style.display = "none";
+        inputNascimento.parentElement.classList.remove("input-container--invalido");
         nascimentoPreenchido = true;
     }
     
@@ -211,8 +220,10 @@ function validaInputCpfVazio() {
     let valorInputCpf = inputCpf.value;
     if (valorInputCpf.length <= 0) {
         spanErroCpfVazio.style.display = "block";
+        inputCpf.parentElement.classList.add("input-container--invalido");
     } else {
         spanErroCpfVazio.style.display = "none";
+        inputCpf.parentElement.classList.remove("input-container--invalido");
         cpfPreenchido = true;
     }
     
@@ -224,8 +235,10 @@ function validaInputCepVazio() {
     let valorInputCep = inputCep.value;
     if (valorInputCep.length <= 0) {
         spanErroCepVazio.style.display = "block";
+        inputCep.parentElement.classList.add("input-container--invalido");
     } else {
         spanErroCepVazio.style.display = "none";
+        inputCep.parentElement.classList.remove("input-container--invalido");
         cepPreenchido = true;
     }
     
@@ -237,8 +250,10 @@ function validaInputLogradouroVazio() {
     let valorInputLogradouro = inputLogradouro.value;
     if (valorInputLogradouro.length <= 0) {
         spanErroLogradouroVazio.style.display = "block";
+        inputLogradouro.parentElement.classList.add("input-container--invalido");
     } else {
         spanErroLogradouroVazio.style.display = "none";
+        inputLogradouro.parentElement.classList.remove("input-container--invalido");
         logradouroPreenchido = true;
     }
     
@@ -250,8 +265,10 @@ function validaInputCidadeVazio() {
     let valorInputCidade = inputCidade.value;
     if (valorInputCidade.length <= 0) {
         spanErroCidadeVazia.style.display = "block";
+        inputCidade.parentElement.classList.add("input-container--invalido");
     } else {
         spanErroCidadeVazia.style.display = "none";
+        inputCidade.parentElement.classList.remove("input-container--invalido");
         cidadePreenchida = true;
     }
     
@@ -263,8 +280,10 @@ function validaInputEstadoVazio() {
     let valorInputEstado = inputEstado.value;
     if (valorInputEstado.length <= 0) {
         spanErroEstadoVazio.style.display = "block";
+        inputEstado.parentElement.classList.add("input-container--invalido");
     } else {
         spanErroEstadoVazio.style.display = "none";
+        inputEstado.parentElement.classList.remove("input-container--invalido");
         estadoPreenchido = true;
     }
     
