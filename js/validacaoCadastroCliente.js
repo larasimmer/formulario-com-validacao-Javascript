@@ -16,6 +16,7 @@ let spanErroCpfInvalido = document.getElementById("erro-cpf-invalido");
 let inputCep = document.getElementById("cep");
 let spanErroCepVazio = document.getElementById("erro-cep-vazio");
 let spanErroCepInvalido = document.getElementById("erro-cep-invalido");
+let spanErroBuscaCep = document.getElementById("erro-busca-cep");
 let inputLogradouro = document.getElementById("logradouro");
 let spanErroLogradouroVazio = document.getElementById("erro-logradouro-vazio");
 let inputCidade = document.getElementById("cidade");
@@ -40,6 +41,7 @@ function realizaValidacoes(event) {
     var cpfValidado = validaEstruturaCpf();
     var cepPreenchido = validaInputCepVazio();
     var cepValidado = validaInputCepInvalido();
+    recuperaCep();
     var logradouroPreenchido = validaInputLogradouroVazio();
     var cidadePreenchida = validaInputCidadeVazio();
     var estadoPreenchido = validaInputEstadoVazio();
@@ -360,6 +362,28 @@ function validaInputCepInvalido() {
     }
 
     return cepValidado;
+}
+
+function recuperaCep() {
+    let valorInputCep = inputCep.value;
+    const url = `https://viacep.com.br/ws/${valorInputCep}/json/`;
+    const options = {
+        method: "GET",
+        mode: "cors",
+        headers: {
+            "content-type": "application/json;charset=UTF-8"
+        }
+    }
+
+    var cepPreenchido = validaInputCepVazio();
+    var cepValidado = validaInputCepInvalido();
+
+    if (cepPreenchido == true && cepValidado == true) {
+        fetch(url, options).then((response) => response.json()).then(data => {
+                console.log(data);
+            }
+        )
+    }
 }
 
 function validaInputLogradouroVazio() {
