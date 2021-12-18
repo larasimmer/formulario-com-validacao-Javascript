@@ -13,6 +13,7 @@ function realizaValidacoes(event) {
 
     var nomePreenchido = validaInputNomeVazio();
     var precoPreenchido = validaInputPrecoVazio();
+    aplicaMascaraMonetaria();
     var descricaoPreenchida = validaInputDescricaoVazia();
 
     if (nomePreenchido == false || precoPreenchido == false || descricaoPreenchida == false) {
@@ -48,6 +49,20 @@ function validaInputPrecoVazio() {
     }
 
     return precoPreenchido;
+}
+
+function aplicaMascaraMonetaria() {
+    const args = {
+        prefix: "R$",
+        fixed: true,
+        fractionDigits: 2,
+        decimalSeparator: ',',
+        thousandsSeparator: '.',
+        cursor: 'end'
+    };
+    
+    const input = SimpleMaskMoney.setMask(inputPreco, args);
+    
 }
 
 function validaInputDescricaoVazia() {

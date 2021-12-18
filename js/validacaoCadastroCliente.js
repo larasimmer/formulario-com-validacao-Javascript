@@ -380,10 +380,24 @@ function recuperaCep() {
 
     if (cepPreenchido == true && cepValidado == true) {
         fetch(url, options).then((response) => response.json()).then(data => {
-                console.log(data);
+                completaEndereçoViaApi(data);
             }
         )
     }
+}
+
+function completaEndereçoViaApi(data) {
+    inputLogradouro.value = data.logradouro;
+    spanErroLogradouroVazio.style.display = "none";
+    inputLogradouro.parentElement.classList.remove("input-container--invalido");
+
+    inputCidade.value = data.localidade;
+    spanErroCidadeVazia.style.display = "none";
+    inputCidade.parentElement.classList.remove("input-container--invalido");
+
+    inputEstado.value = data.uf;
+    spanErroEstadoVazio.style.display = "none";
+    inputEstado.parentElement.classList.remove("input-container--invalido");
 }
 
 function validaInputLogradouroVazio() {
