@@ -15,6 +15,7 @@ let spanErroCpfVazio = document.getElementById("erro-cpf-vazio");
 let spanErroCpfInvalido = document.getElementById("erro-cpf-invalido");
 let inputCep = document.getElementById("cep");
 let spanErroCepVazio = document.getElementById("erro-cep-vazio");
+let spanErroCepInvalido = document.getElementById("erro-cep-invalido");
 let inputLogradouro = document.getElementById("logradouro");
 let spanErroLogradouroVazio = document.getElementById("erro-logradouro-vazio");
 let inputCidade = document.getElementById("cidade");
@@ -38,13 +39,14 @@ function realizaValidacoes(event) {
     var cpfPreenchido = validaInputCpfVazio();
     var cpfValidado = validaEstruturaCpf();
     var cepPreenchido = validaInputCepVazio();
+    var cepValidado = validaInputCepInvalido();
     var logradouroPreenchido = validaInputLogradouroVazio();
     var cidadePreenchida = validaInputCidadeVazio();
     var estadoPreenchido = validaInputEstadoVazio();
 
     if (nomeValidado == false || emailPreenchido == false || emailValidado == false || senhaPreenchida == false || 
         senhaValidada == false || nascimentoPreenchido == false || nascimentoValidado == false || cpfPreenchido == false || cpfValidado == false || cepPreenchido == false ||
-        logradouroPreenchido == false || cidadePreenchida == false || estadoPreenchido == false) {
+        cepValidado == false || logradouroPreenchido == false || cidadePreenchida == false || estadoPreenchido == false) {
             return false;
         } else {
             formularioCadastro.submit();
@@ -345,6 +347,19 @@ function validaInputCepVazio() {
     }
     
     return cepPreenchido;
+}
+
+function validaInputCepInvalido() {
+    var cepValidado = false;
+    let valorInputCep = inputCep.value;
+    if (valorInputCep.length > 0 && valorInputCep.length < 8 || valorInputCep.length > 8) {
+        spanErroCepInvalido.style.display = "block";
+    } else {
+        spanErroCepInvalido.style.display = "none";
+        cepValidado = true;
+    }
+
+    return cepValidado;
 }
 
 function validaInputLogradouroVazio() {
