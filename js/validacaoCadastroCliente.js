@@ -36,14 +36,14 @@ function realizaValidacoes(event) {
     var nascimentoPreenchido = validaInputNascimentoVazio();
     var nascimentoValidado = validaInputNascimentoInvalido();
     var cpfPreenchido = validaInputCpfVazio();
-    var cpfContemNumerosIguais = validaCpfNumerosIguais();
+    var cpfValidado = validaEstruturaCpf();
     var cepPreenchido = validaInputCepVazio();
     var logradouroPreenchido = validaInputLogradouroVazio();
     var cidadePreenchida = validaInputCidadeVazio();
     var estadoPreenchido = validaInputEstadoVazio();
 
     if (nomeValidado == false || emailPreenchido == false || emailValidado == false || senhaPreenchida == false || 
-        senhaValidada == false || nascimentoPreenchido == false || nascimentoValidado == false || cpfPreenchido == false || cpfContemNumerosIguais == true || cepPreenchido == false ||
+        senhaValidada == false || nascimentoPreenchido == false || nascimentoValidado == false || cpfPreenchido == false || cpfValidado == false || cepPreenchido == false ||
         logradouroPreenchido == false || cidadePreenchida == false || estadoPreenchido == false) {
             return false;
         } else {
@@ -65,6 +65,8 @@ function validaInputNome() {
 
     return nomeValidado;
 }
+
+//Validações de e-mail
 
 function validaInputEmailVazio() {
     var emailPreenchido = false;
@@ -93,6 +95,8 @@ function validaInputEmailInvalido() {
 
     return emailValidado;
 }
+
+//Validações de senha
 
 function validaInputSenhaVazio() {
     var senhaPreenchida = false;
@@ -173,6 +177,8 @@ function validaLetrasMinusculasSenha(valorInputSenha) {
     return temLetraMinuscula;
 }
 
+//Validações de nascimento
+
 function validaInputNascimentoVazio() {
     var nascimentoPreenchido = false;
     let valorInputNascimento = inputNascimento.value;
@@ -216,6 +222,8 @@ function calculaNascimentoMais18(data) {
     return maiorDeIdade;
 }
 
+//Validações de CPF
+
 function validaInputCpfVazio() {
     var cpfPreenchido = false;
     let valorInputCpf = inputCpf.value;
@@ -231,6 +239,22 @@ function validaInputCpfVazio() {
     return cpfPreenchido;
 }
 
+function validaEstruturaCpf() {
+    var cpfValidado = false;
+    var primeiroDigitoVerificadorValido = comparaDigitoVerificador1();
+    var segundoDigitoVerificadorValido = comparaDigitoVerificador2();
+    var cpfContemNumerosIguais = validaCpfNumerosIguais();
+
+    if (primeiroDigitoVerificadorValido == false || segundoDigitoVerificadorValido == false || !cpfContemNumerosIguais == false) {
+        spanErroCpfInvalido.style.display = "block";
+    } else {
+        spanErroCpfInvalido.style.display = "none";
+        cpfValidado = true;
+    }
+
+    return cpfValidado;
+}
+
 function validaCpfNumerosIguais() {
     let valorInputCpf = inputCpf.value;
 
@@ -240,14 +264,73 @@ function validaCpfNumerosIguais() {
 
     numerosRepetidos.forEach(function(numeroRepetido,index) {
         
-        if (valorInputCpf == numeroRepetido) {
-            
+        if (valorInputCpf == numeroRepetido) { 
             cpfContemNumerosIguais = true;
         }
     });
         
         return cpfContemNumerosIguais;
 }
+
+function somaDigitoVerificador1Cpf() {
+    let valorInputCpf = inputCpf.value;
+    let soma = 0;
+    let multiplicador = 10;
+    let cpfSemDigitos = valorInputCpf.substr(0,9).split("");
+
+    for(let i=0; multiplicador > 1; multiplicador--) {
+        soma = soma + cpfSemDigitos[i]*multiplicador;
+        i++;
+    }
+
+    return soma;
+}
+
+function comparaDigitoVerificador1() {
+    let valorInputCpf = inputCpf.value;
+    var primeiroDigitoVerificadorValido = false;
+    let primeiroDigitoVerificador = valorInputCpf.charAt(09);
+    let soma = somaDigitoVerificador1Cpf();
+    
+    let calculoDigitoVerificador = 11 - (soma % 11);
+
+    if (primeiroDigitoVerificador == calculoDigitoVerificador) {
+        primeiroDigitoVerificadorValido = true;
+    }
+
+    return primeiroDigitoVerificadorValido;
+}
+
+function somaDigitoVerificador2Cpf() {
+    let valorInputCpf = inputCpf.value;
+    let soma = 0;
+    let multiplicador = 11;
+    let cpfSemDigitos = valorInputCpf.substr(0,10).split("");
+
+    for(let i=0; multiplicador > 1; multiplicador--) {
+        soma = soma + cpfSemDigitos[i]*multiplicador;
+        i++;
+    }
+
+    return soma;
+}
+
+function comparaDigitoVerificador2() {
+    let valorInputCpf = inputCpf.value;
+    var segundoDigitoVerificadorValido = false;
+    let segundoDigitoVerificador = valorInputCpf.charAt(10);
+    let soma = somaDigitoVerificador2Cpf();
+    
+    let calculoDigitoVerificador = 11 - (soma % 11);
+
+    if (segundoDigitoVerificador == calculoDigitoVerificador) {
+        segundoDigitoVerificadorValido = true;
+    }
+
+    return segundoDigitoVerificadorValido;
+}
+
+//Validações de CEP
 
 function validaInputCepVazio() {
     var cepPreenchido = false;
